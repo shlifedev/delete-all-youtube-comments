@@ -25,8 +25,7 @@ const getAriaLabel = (element) => {
 	return label;
 }
  
-const deleteAllComments = async() =>{ 
-  console.log('run');
+const deleteAllComments = async() =>{  
 if(comments.length !== 0){ 
      const current = comments[0];
      const button = current.parentElement
