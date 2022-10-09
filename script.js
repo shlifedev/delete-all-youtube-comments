@@ -1,14 +1,12 @@
-let elements = document.querySelectorAll(`.xDtZAf`); 
- 
-const deleteComment = async (element) => {  
-  window.scrollTo(0, document.body.scrollHeight);
+let elements = document.querySelectorAll(`.xDtZAf`);  
+const deleteComment = async (element) => {   
   const button = element.querySelector('button'); 
   button.click();
-  return new Promise((r)=>{
+  return new Promise((resolve)=>{
     const interval = setInterval(()=>{
       const newElements = document.querySelectorAll(`.xDtZAf`);  
       if(elements.length !== newElements.length){
-         r();
+         resolve();
          clearInterval(interval);
          elements = newElements;
       }
