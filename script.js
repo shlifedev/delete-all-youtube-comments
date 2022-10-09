@@ -1,45 +1,24 @@
-
-let proceedCount = 0;
-const X_BUTTON_CLASS_PATTERN = '.TjcpUd.NMm5M'
-let comments = document.querySelectorAll(X_BUTTON_CLASS_PATTERN)
-
-
-const WAIT_TIME = 1000; // delay for prevent blocking
-const runAndWait = (e, t) => new Promise((resolve, d)=>{
-    setTimeout(()=>{
-        e();
-        resolve();
-    }, t);
-}) 
-const wait = (t) => new Promise((resolve)=>{
-    setTimeout(()=>{
-        resolve();
-    }, t)
-})
-
-const getAriaLabel = (element) => {
-	const label = element.parentElement.getAttribute('aria-label');
-	return label;
-}
+let elements = document.querySelectorAll(`.xDtZAf`); 
  
-const deleteAllComments = async() =>{  
-if(comments.length !== 0){ 
-     const current = comments[0];
-     const button = current.parentElement
-        if(button){ 
-        await runAndWait(async ()=>{
-            button.click(); 
-            console.log(`${getAriaLabel(current)}...`); 
-            current.remove();
-            proceedCount++ 
-            if(proceedCount + 1 === comments.length){  
-                window.scrollTo(0, document.body.scrollHeight);
-                await wait(5000); //hard coded 
-            }
-            comments = document.querySelectorAll(X_BUTTON_CLASS_PATTERN);
-            deleteAllComments();
-        }, WAIT_TIME)     
-    }
-}  
+const deleteComment = async (element) => {  
+  window.scrollTo(0, document.body.scrollHeight);
+  const button = element.querySelector('button'); 
+  button.click();
+  return new Promise((r)=>{
+    const interval = setInterval(()=>{
+      const newElements = document.querySelectorAll(`.xDtZAf`);  
+      if(elements.length !== newElements.length){
+         r();
+         clearInterval(interval);
+         elements = newElements;
+      }
+    }, 100);
+  });
 } 
-deleteAllComments()
+const proccess = async () =>{
+  for(let el of elements){ 
+    await deleteComment(el);
+  }
+}
+
+proccess();
