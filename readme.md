@@ -1,8 +1,7 @@
 visit your [google-activity](https://myactivity.google.com/page?hl=ko&utm_medium=web&utm_source=youtube&page=youtube_comments) and run script below.
-* please delete one comment menually before run this script (for ignore pop-up overlay)
-
+* please delete one comment menually before run this script (for ignore pop-up overlay) 
 ```js
-const WAIT_TIME = 1000;
+const WAIT_TIME = 1000; // delay for prevent blocking
 
 const runAndWait = (e, t) => new Promise((resolve, d)=>{
     setTimeout(()=>{
